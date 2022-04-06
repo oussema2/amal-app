@@ -2,7 +2,6 @@ import "./App.css";
 import Header from "./Components/molecules/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Article from "./pages/Article";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { url } from "./path";
@@ -10,6 +9,7 @@ import UserContext from "./context/UserContext";
 import Acceuill from "./pages/Acceuill";
 import MyArticles from "./pages/MyArticles";
 import AddArticle from "./pages/AddArticle";
+
 function App() {
   const [loginData, setLoginData] = useState({});
   const [signUpModal, setSignUpModal] = useState(false);
@@ -147,6 +147,7 @@ function App() {
       document.body.style.cursor = "default";
       localStorage.setItem("id", response.data.teacher._id);
       closeModal();
+      window.location = "c";
       return;
     }
     console.log(response);

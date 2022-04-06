@@ -127,7 +127,7 @@ const SideNav = () => {
                 width: 30,
                 borderRadius: "50%",
               }}
-              alt="profile image"
+              alt="profile"
               src={`${url}/images/${userData.profilePicture}`}
             />
           ) : null}
