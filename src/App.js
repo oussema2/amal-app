@@ -9,6 +9,7 @@ import UserContext from "./context/UserContext";
 import Acceuill from "./pages/Acceuill";
 import MyArticles from "./pages/MyArticles";
 import AddArticle from "./pages/AddArticle";
+import ArticleDetails from "./pages/ArticleDetails";
 
 function App() {
   const [loginData, setLoginData] = useState({});
@@ -25,6 +26,7 @@ function App() {
   });
   function openModal() {
     setIsOpen(true);
+    setLoginMessageResponse(null);
   }
 
   function closeModal(e) {
@@ -120,6 +122,7 @@ function App() {
         setuserData(teacher);
         localStorage.setItem("id", teacher._id);
         setSignUpModal(false);
+        window.location = "c/";
       }
     })();
   };
@@ -147,7 +150,11 @@ function App() {
       document.body.style.cursor = "default";
       localStorage.setItem("id", response.data.teacher._id);
       closeModal();
-      window.location = "c";
+      if (window.location.pathname === "/c/writeArticle") {
+        window.location = "/c/writeArticle";
+        return;
+      }
+      window.location = "/c";
       return;
     }
     console.log(response);
@@ -170,6 +177,7 @@ function App() {
     setuserData(teacher);
   };
   const logout = () => {
+    console.log("clicked");
     setuserData({});
     localStorage.removeItem("id");
   };
@@ -196,7 +204,20 @@ function App() {
             ></Route>
             <Route path="/c" element={<Acceuill />} />
             <Route path="/c/myArticles" element={<MyArticles />} />
-            <Route path="/c/writeArticle" element={<AddArticle />} />
+            <Route path="/c/articleDetails/:id" element={<ArticleDetails />} />
+
+            <Route
+              path="/c/writeArticle"
+              element={
+                <AddArticle
+                  openModal={openModal}
+                  openSignUpModal={openSignUpModal}
+                  logout={logout}
+                  setuserData={(data) => setuserData(data)}
+                  login={login}
+                />
+              }
+            />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

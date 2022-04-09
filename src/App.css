@@ -1,5 +1,3 @@
-
-
 .header {
   padding-left: 20%;
   padding-right: 20%;
@@ -14,11 +12,37 @@
   transition: all ease-in-out 0.5s;
 }
 
-.acceuillCartsContainer{
+.addArticleImageContainer {
+  width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  height: 100px;
+}
+.addArticleImageWrapper {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  height: 100%;
+  width: 900px;
+  align-items: center;
+}
+
+.addImageArticleIcon {
+  flex: 2;
+}
+.addArticleImageInput {
+  flex: 36;
+}
+
+.acceuillCartsContainer {
+  display: flex;
+  width: 100%;
   flex-direction: column;
-  padding-left:100px ;
-  padding-top: 50px;
+  justify-content: space-evenly;
+  padding-left: 50px;
+  margin-top: 100px;
 }
 
 @media screen and (max-width: 480px) {
@@ -36,6 +60,20 @@
   }
 }
 
+.contentAceuillConainer {
+  margin-left: 280px;
+}
+@media screen and (max-width: 480px) {
+  .contentAceuillConainer {
+    margin-left: 30px;
+  }
+}
+
+@media screen and (max-width: 762px) {
+  .contentAceuillConainer {
+    margin-left: 100px;
+  }
+}
 .modalContainer {
   height: 100vh;
   width: 100%;
@@ -185,7 +223,6 @@
 *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 /* 
@@ -231,7 +268,7 @@ body {
 }
 
 .file-custom:after {
-  content: "Choose Profile Image...";
+  content: "Choose  Image...";
 }
 
 .file-custom:before {
@@ -277,9 +314,6 @@ body {
   display: flex;
   flex-direction: row;
   min-width: 100%;
-  
-
-
 }
 
 @media screen and (max-width: 762px) {
@@ -288,7 +322,6 @@ body {
     padding-right: 50px;
   }
 }
-
 
 * {
   margin: 0;
@@ -317,10 +350,9 @@ body {
   line-height: 95px;
   font-size: 106px;
   color: rgba(8, 8, 8, 1);
-  font-feature-settings: 'pnum' on, 'lnum' on;
+  font-feature-settings: "pnum" on, "lnum" on;
   font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
   font-weight: 400;
-
 }
 
 .descriptionHomeLeftSide {
@@ -330,7 +362,6 @@ body {
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   margin-top: -20px;
-
 }
 
 .startHomeLEftSide {
@@ -360,17 +391,12 @@ body {
   }
 }
 
-
 .titleHimeMidSide {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 3px;
-
-
 }
-
-
 
 .carteHomeMidSideContainer {
   display: flex;
@@ -378,7 +404,6 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
   margin-top: 20px;
-
 }
 
 .carteHomeMidSide {
@@ -395,8 +420,37 @@ body {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  margin-bottom:30px ;
-
+  margin-bottom: 30px;
+}
+.carteHomeBotSideAceuill {
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: 250px;
+  width: 975px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-bottom: 30px;
+  border-bottom: solid 0.5px rgb(235, 226, 226);
+  transition: box-shadow 0.3s;
+  align-items: center;
+}
+.carteAceuillImageArticle {
+  border-radius: 15px;
+  width: 200px;
+  margin-right: 15px;
+}
+.carteHomeBotSideAceuill:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.articleAceuillDvider {
+  background-color: rgba(230, 230, 230, 1);
+  height: 1px;
+  margin: 0;
+  box-sizing: inherit;
+  width: 100%;
 }
 
 .carteHomeLeftSideContainerUser {
@@ -404,7 +458,6 @@ body {
   align-items: center;
   flex-direction: row;
   flex-direction: 5;
-
 }
 
 .carteHomeLeftSideContainer {
@@ -412,6 +465,15 @@ body {
   display: flex;
   align-items: left;
   flex-direction: column;
+}
+
+.carteHomeLeftSideContainerAceuill {
+  flex: 5;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  margin-right: 100px;
+  box-sizing: border-box;
 }
 
 .carteHomeRightSideContainer {
@@ -423,9 +485,8 @@ body {
   box-shadow: inset 0 0 0 1px rgb(0 0 0 / 5%);
   width: 20px;
   height: 20px;
-
 }
-.articleImage{
+.articleImage {
   border-radius: 10px;
 }
 
@@ -444,7 +505,6 @@ body {
   font-weight: 500;
   color: rgba(41, 41, 41, 1);
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 }
 
 .carteHomeArticleTitle {
@@ -462,7 +522,6 @@ body {
   color: rgba(41, 41, 41, 1);
   line-height: 20px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 }
 
 .carteHomeDate {
@@ -473,7 +532,6 @@ body {
   line-height: 20px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-
 }
 
 .carteHomeRightSideNumberArticle {
@@ -484,7 +542,6 @@ body {
   font-size: 30px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-sizing: inherit;
-
 }
 
 .homeMidSideTitle {
@@ -495,19 +552,14 @@ body {
   font-weight: 700;
   color: rgba(41, 41, 41, 1);
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 }
 
 .homeBottomSideContainer {
-
-
   padding-left: 20%;
   padding-right: 20%;
   min-width: 100%;
   margin-top: 50px;
 }
-
-
 
 @media screen and (max-width: 762px) {
   .homeMidSIdeContainer {
@@ -545,5 +597,4 @@ body {
   line-height: 20px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  
 }

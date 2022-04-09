@@ -1,0 +1,110 @@
+.addArticleHeader {
+  height: 70px;
+  padding-left: 20%;
+  padding-right: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+@media screen and (max-width: 762px) {
+  .addArticleHeader {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.writingSection {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.articleBodyAddArticle {
+  padding: 20px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  transition: all ease 0.3s;
+  margin-top: 25px;
+}
+
+.articleBodyAddArticle:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  border-radius: 10px;
+}
+
+.articleBodyAddArticle::placeholder {
+  color: rgb(216, 206, 206);
+  font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman",
+    Times, serif;
+  font-weight: 400;
+}
+.addArticleHeaderProfilePic {
+  width: 48px;
+  border-radius: 50%;
+}
+
+.rightSideAddArticleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.publishBtnHeader {
+  border-radius: 25px;
+  background-color: #1a8917;
+  height: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  margin-right: 25px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+
+.publishBtnHeader:hover {
+  background-color: #197716;
+}
+
+.titleSection {
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  transition: box-shadow 0.3s;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.titleLabeAddArticle {
+  flex: 1;
+  color: rgb(179, 165, 165);
+  width: 100%;
+  margin-right: 10px;
+}
+.titleInputAddArticle {
+  flex: 9;
+  height: 60%;
+  border: none;
+  outline: none;
+  font-size: 64px;
+  transition: box-shadow 0.3s;
+  border-left: 1px solid rgb(230, 220, 220);
+  padding-left: 25px;
+  font-family: medium-content-title-font, Georgia, Cambria, "Times New Roman",
+    Times, serif;
+}
+.titleInputAddArticle::placeholder {
+  color: rgb(216, 206, 206);
+}
+
+.titleSection:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  border-radius: 10px;
+}
