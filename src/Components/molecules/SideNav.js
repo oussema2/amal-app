@@ -22,8 +22,8 @@ const SideNav = () => {
             {" "}
             {location.pathname !== "/c" ? (
               <svg
-                width="24"
-                height="24"
+                width="32"
+                height="32"
                 viewBox="0 0 24 24"
                 fill="none"
                 aria-label="Home"
@@ -37,8 +37,8 @@ const SideNav = () => {
               </svg>
             ) : (
               <svg
-                width="24"
-                height="24"
+                width="32"
+                height="32"
                 viewBox="0 0 24 24"
                 fill="none"
                 aria-label="Home"
@@ -64,8 +64,8 @@ const SideNav = () => {
           >
             {location.pathname === "/c/myArticles" ? (
               <svg
-                width="24"
-                height="24"
+                width="32"
+                height="32"
                 viewBox="0 0 24 24"
                 fill="none"
                 aria-label="Stories"
@@ -79,8 +79,8 @@ const SideNav = () => {
               </svg>
             ) : (
               <svg
-                width="24"
-                height="24"
+                width="32"
+                height="32"
                 viewBox="0 0 24 24"
                 fill="none"
                 aria-label="Stories"
@@ -105,8 +105,8 @@ const SideNav = () => {
             style={{ textDecoration: "none", color: "black" }}
           >
             <svg
-              width="24"
-              height="24"
+              width="32"
+              height="32"
               viewBox="0 0 24 24"
               fill="none"
               aria-label="Write"
@@ -124,7 +124,7 @@ const SideNav = () => {
           {userData.fullName ? (
             <img
               style={{
-                width: 30,
+                width: 32,
                 borderRadius: "50%",
               }}
               alt="profile"

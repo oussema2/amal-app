@@ -1,44 +1,71 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SideNav from "../Components/molecules/SideNav";
 import { url } from "../path";
 const Acceuill = (props) => {
   const [articles, setarticles] = useState([]);
+  const [topics, setTopics] = useState([]);
+  const location = useNavigate();
+
   useEffect(() => {
     (async () => {
       const response = await axios.get(`${url}/article/getArticles`);
+      const responseTopics = await axios.get(`${url}/topic/getAllTopics`);
+      if (responseTopics.data.topics) {
+        setTopics(responseTopics.data.topics);
+      }
       console.log(response.data.articles);
+
       if (response.data.articles) {
         setarticles(response.data.articles);
       }
     })();
   }, []);
-
+  const getArticleByTopic = async (topic) => {
+    const response = await axios.get(`${url}/article/getArticlesByTopic/Magic`);
+    if (response.data.articles) {
+      setarticles(response.data.articles);
+    }
+  };
+  const clickOnCart = (e, _id) => {
+    console.log(e.target.classList);
+    if (e.target.classList.contains("categorieItemContainerInPost")) {
+      getArticleByTopic(e.target.innerHTML);
+    } else {
+      location("/c/articleDetails/" + _id);
+    }
+  };
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
+        width: "100%",
       }}
     >
-      <SideNav />
-      <div className="contentAceuillConainer">
-        <div className="acceuillCartsContainer">
-          {articles
-            ? articles.map((item, index) => (
-                <Link
-                  key={index}
-                  style={{
-                    textDecoration: "none",
-                  }}
-                  to={`/c/articleDetails/${item.article?._id}`}
-                >
-                  {" "}
-                  <div className="carteHomeBotSideAceuill">
+      <div
+        style={{
+          flex: 1,
+        }}
+      >
+        <SideNav />
+      </div>
+      <div
+        style={{
+          flex: 6,
+        }}
+      >
+        <div className="contentAceuillConainer">
+          <div className="acceuillCartsContainer">
+            {articles
+              ? articles.map((item, index) => (
+                  <div
+                    onClick={(e) => clickOnCart(e, item.article._id)}
+                    className="carteHomeBotSideAceuill"
+                  >
                     <div className="carteHomeLeftSideContainerAceuill">
                       <div className="carteHomeLeftSideContainerUser">
-                        {" "}
                         <img
                           className="profileIconCarteHome"
                           style={{
@@ -48,19 +75,36 @@ const Acceuill = (props) => {
                           alt="this "
                         />
                         <p className="carteHomeUserName">
-                          {item.teacher.fullName}
+                          {item.teacher.fullName} -{" "}
+                          {item.article.articleDate.slice(0, 10)}
                         </p>
                       </div>
-                      <div>
+                      <div
+                        style={{
+                          overflowWrap: "break-word",
+                          // overflow-wrap: break-word;
+                        }}
+                      >
                         <p className="carteHomeArticleTitleBotSide">
                           {item.article.title}
                         </p>
-                        <p className="cartHomeBottomSideQuestion">
-                          {item.article.articleBody.slice(0, 30)}...
+                        <p
+                          style={{
+                            overflowWrap: "break-word",
+                          }}
+                          className="cartHomeBottomSideQuestion"
+                        >
+                          {item.article.articleBody.slice(0, 150)}...
                         </p>
                       </div>
-                      <div>
-                        <p className="carteHomeDate">Mar 30</p>
+                      <div className="topicInCarteCOntainer">
+                        {item.article.topics
+                          ? item.article.topics.map((topix) => (
+                              <p className="categorieItemContainerInPost">
+                                {topix}
+                              </p>
+                            ))
+                          : null}
                       </div>
                     </div>
                     <div>
@@ -71,9 +115,44 @@ const Acceuill = (props) => {
                       />
                     </div>
                   </div>
-                </Link>
-              ))
-            : null}
+                ))
+              : null}
+          </div>
+          <div className="aceuillContainerLeft">
+            <div className="searchLeftSideContainer">
+              <svg
+                className="searchIconLeftSide"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="rgba(8, 8, 8, 1)"
+              >
+                <path d="M20.07 18.93l-4.16-4.15a6 6 0 1 0-.88.88l4.15 4.16a.62.62 0 1 0 .89-.89zM6.5 11a4.75 4.75 0 1 1 9.5 0 4.75 4.75 0 0 1-9.5 0z"></path>
+              </svg>
+              <input
+                className="searchInputLeftSide"
+                placeholder="Search"
+                type={"text"}
+              />
+            </div>
+            <div className="topicsContainer">
+              <p>
+                <b>Recommended topics</b>
+              </p>
+              <div className="CategoriesITemsContainer">
+                {topics
+                  ? topics.map((topic) => (
+                      <div
+                        onClick={() => getArticleByTopic(topic.topicLabel)}
+                        className="categorieItemContainer"
+                      >
+                        <p>{topic.topicLabel}</p>
+                      </div>
+                    ))
+                  : null}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -37,12 +37,25 @@
 }
 
 .acceuillCartsContainer {
+  flex: 7;
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: space-evenly;
-  padding-left: 50px;
-  margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+  border-right: solid rgb(199, 191, 191) 1px;
+}
+.aceuillContainerLeft {
+  flex: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 100px;
+  justify-content: center;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 @media screen and (max-width: 480px) {
@@ -61,17 +74,17 @@
 }
 
 .contentAceuillConainer {
-  margin-left: 280px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 @media screen and (max-width: 480px) {
   .contentAceuillConainer {
-    margin-left: 30px;
   }
 }
 
 @media screen and (max-width: 762px) {
   .contentAceuillConainer {
-    margin-left: 100px;
   }
 }
 .modalContainer {
@@ -134,6 +147,11 @@
 .modalContent {
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 75px;
+  padding-right: 75px;
 }
 
 .titleModal {
@@ -337,6 +355,14 @@ body {
 }
 
 .homeTopSideRight {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 100;
+  padding: 50px;
+}
+
+.homeTopSideRight {
   height: 100%;
   align-items: center;
   display: flex;
@@ -423,28 +449,29 @@ body {
   margin-bottom: 30px;
 }
 .carteHomeBotSideAceuill {
+  padding-top: 100px;
   padding-left: 20px;
   padding-right: 20px;
   min-height: 250px;
-  width: 975px;
+  width: 775px;
   display: flex;
-  justify-content: space-around;
   flex-direction: row;
   margin-bottom: 30px;
   border-bottom: solid 0.5px rgb(235, 226, 226);
   transition: box-shadow 0.3s;
-  align-items: center;
+  align-items: flex-start;
+  cursor: pointer;
 }
 .carteAceuillImageArticle {
   border-radius: 15px;
-  width: 200px;
+  width: 170px;
   margin-right: 15px;
 }
-.carteHomeBotSideAceuill:hover {
+/* .carteHomeBotSideAceuill:hover {
   box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
   border-radius: 10px;
   cursor: pointer;
-}
+} */
 .articleAceuillDvider {
   background-color: rgba(230, 230, 230, 1);
   height: 1px;
@@ -473,7 +500,6 @@ body {
   align-items: left;
   flex-direction: column;
   margin-right: 100px;
-  box-sizing: border-box;
 }
 
 .carteHomeRightSideContainer {
@@ -586,15 +612,200 @@ body {
 
 .cartHomeBottomSideQuestion {
   margin-top: 10px;
-  -webkit-line-clamp: 2;
   max-height: 40px;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  text-overflow: ellipsis;
   overflow: hidden;
   color: rgba(117, 117, 117, 1);
   font-size: 16px;
   line-height: 20px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
+}
+
+.imageHomePage {
+  width: 550px;
+  border-radius: 15px;
+}
+.searchLeftSideContainer {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: center;
+  margin-bottom: 70px;
+}
+
+.searchIconLeftSide {
+  position: absolute;
+  left: 60px;
+}
+
+.searchInputLeftSide {
+  padding-left: 50px;
+  width: 80%;
+  height: 40px;
+  border-radius: 25px;
+  border: solid 1px rgb(230, 220, 220);
+  outline: none;
+}
+
+.topicsContainer {
+  width: 100%;
+  border-top: solid rgb(199, 191, 191) 1px;
+  padding-top: 50px;
+}
+
+.categorieItemContainer {
+  height: 30px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 25px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+.categorieItemContainer:hover {
+  background-color: rgb(190, 171, 171);
+}
+
+.CategoriesITemsContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 15px;
+}
+
+.topicInCarteCOntainer {
+  margin-top: 25px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.categorieItemContainerInPost {
+  height: 25px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 25px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all ease 0.5s;
+  color: black;
+}
+
+.categorieItemContainerInPost:hover {
+  background-color: rgb(190, 171, 171);
+}
+.articleOwnerInModel {
+  margin-bottom: 25px;
+}
+
+.addTopicsInputInModal {
+  margin-top: 25px;
+  height: 55px;
+  width: 100%;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  outline: none;
+  border: solid 0.5px rgb(221, 213, 213);
+}
+.addTopicCOntainerInModall {
+  position: relative;
+  width: 100%;
+}
+.autoCompleteTopic {
+  width: 200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  border: solid 1px rgb(224, 217, 217);
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+
+.autoCompleteTopicContainer {
+  position: absolute;
+  top: 85px;
+  left: -30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: 0.5s ease-out 0s 1 slideInFromRight forwards;
+}
+
+.arrowAutoComplete {
+  clip-path: polygon(50% 0, 100% 50%, 50% 50%, 0 50%);
+  width: 25px;
+  height: 25px;
+  background-color: red;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.topiText {
+  width: 100%;
+  text-align: left;
+  height: 50px;
+  padding: 15px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.topicTextCOntainer {
+  width: 100%;
+  text-align: left;
+  height: 50px;
+  padding: 15px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.topiText:hover {
+  background-color: #1a8917;
+  color: white;
+}
+
+.addedTopicsCOntainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 25px;
+}
+
+.addedTopicItemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: rgb(226, 216, 216);
+  border-radius: 10px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.deleteAddedTopicIcon {
+  cursor: pointer;
 }

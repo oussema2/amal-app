@@ -11,6 +11,9 @@ import "./addArticle.css";
 const AddArticle = (props) => {
   const userData = useContext(UserContext);
   const [article, setArticle] = useState({});
+  const [topics, setTopics] = useState([]);
+  const [AddedTopics, setAddedTopics] = useState([]);
+  const [autoCompleteShown, setautoCompleteShown] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   function closeModal(e) {
     if (
@@ -43,19 +46,57 @@ const AddArticle = (props) => {
         break;
     }
   };
-  console.log(userData);
+
+  const searcTopics = async (e) => {
+    setautoCompleteShown(true);
+    if (e.target.value) {
+      const responseSearch = await axios.get(
+        `${url}/topic/searchTopic/${e.target.value}`
+      );
+      if (responseSearch.data.topics.length > 0) {
+        setTopics(responseSearch.data.topics);
+      }
+    } else {
+      setTopics([]);
+    }
+  };
+  console.log(topics);
   const addArticle = async () => {
+    const date = new Date();
+
     const data = new FormData();
     data.set("title", article.title);
     data.set("articleBody", article.articleBody);
     data.set("articleImage", article.articleImage);
     data.set("userId", userData._id);
+    data.set("topics", AddedTopics.join(","));
+    data.set("articleDate", date);
 
     const response = await axios.post(`${url}/article/addArticle`, data);
     console.log(response.data.message);
     if (response.data.message === "added") {
       openModal();
     }
+  };
+  const addToAddedTopics = (e) => {
+    const addedTopicsX = AddedTopics.filter(
+      (item) => item === e.target.innerHTML
+    );
+    console.log(addedTopicsX);
+    if (addedTopicsX.length === 0) {
+      setAddedTopics([...AddedTopics, e.target.innerHTML]);
+    }
+  };
+  const clickOnModalBody = (e) => {
+    if (
+      !e.target.classList.contains("topiText") &&
+      !e.target.classList.contains("addTopicsInputInModal")
+    ) {
+      setautoCompleteShown(false);
+    }
+  };
+  const deleteAddecTOpic = (e) => {
+    setAddedTopics(AddedTopics.filter((item) => item !== e));
   };
   return (
     <div>
@@ -67,7 +108,7 @@ const AddArticle = (props) => {
         </div>
         {userData.fullName ? (
           <div className="rightSideAddArticleHeader">
-            <div onClick={addArticle} className="publishBtnHeader">
+            <div onClick={() => openModal()} className="publishBtnHeader">
               <p>Publish</p>
             </div>
 
@@ -166,8 +207,16 @@ const AddArticle = (props) => {
         </div>
       </form>
       {modalIsOpen ? (
-        <div onClick={(e) => closeModal(e)} className="modalContainer">
-          <div className="modal">
+        <div
+          onClick={(e) => {
+            closeModal(e);
+            if (autoCompleteShown) {
+              setautoCompleteShown(false);
+            }
+          }}
+          className="modalContainer"
+        >
+          <div onClick={(e) => clickOnModalBody(e)} className="modal">
             <div className="closeIconModal" onClick={(e) => closeModal(e)}>
               <svg className="jj" width="29" height="29">
                 <path
@@ -178,15 +227,61 @@ const AddArticle = (props) => {
             </div>
             <div className="modalContainerContent">
               <div className="modalContent">
-                <img
-                  style={{
-                    width: 150,
-                    marginBottom: 70,
-                  }}
-                  src={`${process.env.PUBLIC_URL}/success-icon-23194.png`}
-                  alt="success article added"
-                />
-                <p className="titleModal">Article Added.</p>
+                <p className="articleOwnerInModel">
+                  Publishing to : <b>{userData.fullName}</b>
+                </p>
+                <p>
+                  Add or change tags (up to 5) so readers know what your story
+                  is about
+                </p>
+                {AddedTopics.length > 0 ? (
+                  <div className="addedTopicsCOntainer">
+                    {AddedTopics.map((item) => (
+                      <div className="addedTopicItemContainer">
+                        <p>{item}</p>
+                        <div
+                          className="deleteAddedTopicIcon"
+                          onClick={() => deleteAddecTOpic(item)}
+                        >
+                          <svg width="29" height="29">
+                            <path
+                              d="M20.13 8.11l-5.61 5.61-5.6-5.61-.81.8 5.61 5.61-5.61 5.61.8.8 5.61-5.6 5.61 5.6.8-.8-5.6-5.6 5.6-5.62"
+                              fill-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+
+                <div className="addTopicCOntainerInModall">
+                  <input
+                    placeholder="Add Topic..."
+                    className="addTopicsInputInModal"
+                    type={"text"}
+                    onChange={(e) => searcTopics(e)}
+                  />
+                  {autoCompleteShown && topics.length > 0 ? (
+                    <div className="autoCompleteTopicContainer">
+                      <div className="arrowAutoComplete" />
+                      <div className="autoCompleteTopic">
+                        {topics.map((topic) => (
+                          <p
+                            onClick={(e) => addToAddedTopics(e)}
+                            className="topiText"
+                          >
+                            {topic.topicLabel ? topic.topicLabel : topic}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+
+                <div onClick={addArticle} className="publishBtnHeader">
+                  <p>Publish Now</p>
+                </div>
               </div>
             </div>
           </div>

@@ -15,7 +15,13 @@ const Home = (props) => {
             Start Reading
           </button>
         </div>
-        <div className="homeTopSideRight"></div>
+        <div className="homeTopSideRight">
+          <img
+            className="imageHomePage"
+            alt="home pic"
+            src={`${process.env.PUBLIC_URL}/depositphotos_11389074-stock-photo-young-school-teachers.jpg`}
+          />
+        </div>
       </div>
 
       <div className="homeMidSIdeContainer">

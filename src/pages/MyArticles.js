@@ -59,7 +59,7 @@ const MyArticles = (props) => {
                           {item.title}
                         </p>
                         <p className="cartHomeBottomSideQuestion">
-                          {item.articleBody.slice(0, 30)}...
+                          {item.articleBody.slice(0, 150)}...
                         </p>
                       </div>
                       <div>
