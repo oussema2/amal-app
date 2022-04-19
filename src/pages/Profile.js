@@ -1,38 +1,39 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import SideNav from "../Components/molecules/SideNav";
-import UserContext from "../context/UserContext";
 import { url } from "../path";
+import axios from "axios";
 
-const MyArticles = (props) => {
-  const [articles, setArticles] = useState([]);
-  const userData = useContext(UserContext);
+const Profile = () => {
+  const [articles, setarticles] = useState([]);
+  const [teacher, setTeacher] = useState({});
   const [topics, setTopics] = useState([]);
   const location = useNavigate();
+  let { id } = useParams();
 
   useEffect(() => {
     (async () => {
       const response = await axios.get(
-        `${url}/article/getArticlesById/${localStorage.getItem("id")}`
+        `${url}/article/getArticlesByUser/${id}`
       );
       const responseTopics = await axios.get(`${url}/topic/getAllTopics`);
       if (responseTopics.data.topics) {
         setTopics(responseTopics.data.topics);
       }
-      console.log(response);
+      console.log(response.data.articles);
 
       if (response.data.articles) {
-        setArticles(response.data.articles);
+        setarticles(response.data.articles);
+        setTeacher(response.data.teacher);
       }
     })();
   }, []);
   const getArticleByTopic = async (topic) => {
     const response = await axios.get(
-      `${url}/article/getArticlesByTopic/${topic}`
+      `${url}/article/getArticlesByUserAndTopics/${id}/${topic}`
     );
     if (response.data.articles) {
-      setArticles(response.data.articles);
+      setarticles(response.data.articles);
     }
   };
   const clickOnCart = (e, _id) => {
@@ -43,7 +44,6 @@ const MyArticles = (props) => {
       location("/c/articleDetails/" + _id);
     }
   };
-  console.log(userData);
   return (
     <div
       style={{
@@ -79,11 +79,11 @@ const MyArticles = (props) => {
                           style={{
                             width: 20,
                           }}
-                          src={`${url}/teacherImages/${userData?.profilePicture}`}
+                          src={`${url}/teacherImages/${teacher.profilePicture}`}
                           alt="this "
                         />
                         <p className="carteHomeUserName">
-                          {userData.fullName} - {item.articleDate.slice(0, 10)}
+                          {teacher.fullName} - {item.articleDate.slice(0, 10)}
                         </p>
                       </div>
                       <div
@@ -105,7 +105,7 @@ const MyArticles = (props) => {
                         </p>
                       </div>
                       <div className="topicInCarteCOntainer">
-                        {item.article?.topics
+                        {item.topics
                           ? item.topics.map((topix) => (
                               <p className="categorieItemContainerInPost">
                                 {topix}
@@ -149,7 +149,10 @@ const MyArticles = (props) => {
               <div className="CategoriesITemsContainer">
                 {topics
                   ? topics.map((topic) => (
-                      <div className="categorieItemContainer">
+                      <div
+                        onClick={() => getArticleByTopic(topic.topicLabel)}
+                        className="categorieItemContainer"
+                      >
                         <p>{topic.topicLabel}</p>
                       </div>
                     ))
@@ -163,4 +166,4 @@ const MyArticles = (props) => {
   );
 };
 
-export default MyArticles;
+export default Profile;

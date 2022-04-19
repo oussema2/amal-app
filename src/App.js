@@ -10,6 +10,7 @@ import Acceuill from "./pages/Acceuill";
 import MyArticles from "./pages/MyArticles";
 import AddArticle from "./pages/AddArticle";
 import ArticleDetails from "./pages/ArticleDetails";
+import Profile from "./pages/Profile";
 
 function App() {
   const [loginData, setLoginData] = useState({});
@@ -76,6 +77,10 @@ function App() {
         setRegisterInfo({ ...registerInfo, profilePicture: e.target.files[0] });
 
         break;
+      case "bio":
+        setRegisterInfo({ ...registerInfo, bio: e.target.value });
+
+        break;
 
       default:
         break;
@@ -99,7 +104,7 @@ function App() {
         break;
     }
   };
-  console.log(loginData);
+  console.log(registerInfo);
   const submitRegister = (e) => {
     e.preventDefault();
     const teacherData = new FormData();
@@ -107,6 +112,8 @@ function App() {
     teacherData.append("email", registerInfo.email);
     teacherData.append("password", registerInfo.password);
     teacherData.append("profilePicture", registerInfo.profilePicture);
+    teacherData.append("bio", registerInfo.bio);
+
     (async () => {
       const responseRegister = await axios.post(
         `${url}/teacher/auth/register`,
@@ -116,7 +123,6 @@ function App() {
           Accept: "application/json",
         }
       );
-      console.log(responseRegister);
       if (responseRegister.data.status === 200) {
         const teacher = responseRegister.data.teacher;
         setuserData(teacher);
@@ -139,7 +145,6 @@ function App() {
     }
     document.body.style.cursor = "wait";
     const response = await axios.post(`${url}/teacher/auth/login`, loginData);
-    console.log(response.data);
     if (response.data.message) {
       document.body.style.cursor = "default";
 
@@ -158,7 +163,6 @@ function App() {
       window.location = "/c";
       return;
     }
-    console.log(response);
   };
   useEffect(() => {
     (async () => {
@@ -206,6 +210,7 @@ function App() {
             <Route path="/c" element={<Acceuill />} />
             <Route path="/c/myArticles" element={<MyArticles />} />
             <Route path="/c/articleDetails/:id" element={<ArticleDetails />} />
+            <Route path="/c/profile/:id" element={<Profile />} />
 
             <Route
               path="/c/writeArticle"
@@ -235,7 +240,7 @@ function App() {
               </svg>
             </div>
             <div className="modalContainerContent">
-              <div className="modalContent">
+              <div className="modalContentHome">
                 <p className="titleModal">Welcome back.</p>
                 {loginMessageResponse ? (
                   <p
@@ -297,7 +302,7 @@ function App() {
               </svg>
             </div>
             <div className="modalContainerContent">
-              <div className="modalContent">
+              <div className="modalContentHome">
                 <p className="titleModal">Join Teacher's.</p>
                 <form
                   onSubmit={(e) => submitRegister(e)}
@@ -337,7 +342,17 @@ function App() {
                     />
                   </div>
                   <div className="inputContainer">
-                    <label class="file">
+                    <textarea
+                      name="bio"
+                      id="bio"
+                      cols={45}
+                      rows={10}
+                      className="bioTextArea"
+                      placeholder="Tell us about yourself..."
+                    />
+                  </div>
+                  <div className="inputContainer">
+                    <label className="file">
                       <input
                         name="profilePicture"
                         type="file"
@@ -345,7 +360,7 @@ function App() {
                         accept="image/*"
                         aria-label="File browser example"
                       />
-                      <span class="file-custom"></span>
+                      <span className="file-custom"></span>
                     </label>
                   </div>
                   <button type="submit" className="submitBtn">

@@ -45,6 +45,19 @@
   justify-content: center;
   border-right: solid rgb(199, 191, 191) 1px;
 }
+
+.acceuillCartsContainerArticleDetails {
+  padding-top: 100px;
+  flex: 7;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  justify-content: center;
+  border-right: solid rgb(199, 191, 191) 1px;
+}
 .aceuillContainerLeft {
   flex: 3;
   width: 100%;
@@ -154,6 +167,15 @@
   padding-right: 75px;
 }
 
+.modalContentHome {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 75px;
+  padding-right: 75px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 .titleModal {
   letter-spacing: -0.03em;
   line-height: 32px;
@@ -164,7 +186,6 @@
 }
 
 .modalContainerContent {
-  min-height: 695px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -179,6 +200,18 @@
   height: 60px;
   text-indent: 20px;
   font-size: 15px;
+}
+.bioTextArea {
+  border: 0.5px solid rgb(214, 209, 209);
+  outline: none;
+  border-radius: 15px;
+  width: 70%;
+  text-indent: 20px;
+  font-size: 15px;
+  padding-top: 10px;
+}
+.bioTextArea::placeholder {
+  color: rgb(202, 190, 190);
 }
 
 .inputSignIn::placeholder {
@@ -516,6 +549,11 @@ body {
   border-radius: 10px;
 }
 
+.articleImageArticleDetail {
+  width: 100%;
+  height: 300px;
+}
+
 .carteHomeUserName {
   margin-left: 5px;
   padding-right: 2px;
@@ -808,4 +846,74 @@ body {
 
 .deleteAddedTopicIcon {
   cursor: pointer;
+}
+.headerUserInArticleDetails {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.imageUserArticleDetail {
+  width: 70px;
+  border-radius: 35px;
+  flex: 1;
+}
+.userDataCOntainerInArticleDetails {
+  flex: 9;
+  height: 60px;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  margin-right: 20px;
+}
+.articleTitleArticleDetail {
+  width: 100%;
+  text-align: left;
+}
+
+.articleBody {
+  margin-top: 60px;
+  margin-bottom: 100px;
+}
+.articleOwnerDetails {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+.articleOwnerImage {
+  width: 85px;
+  border-radius: 50%;
+}
+.articleOwnerName {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.articleOwnerBio {
+  margin-top: 20px;
+}
+
+.visitProfileOwner {
+  text-decoration: none;
+  color: white;
+  background-color: #1a8917;
+  width: 150px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 25px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.visitProfileOwner:hover {
+  background-color: #0f690c;
 }

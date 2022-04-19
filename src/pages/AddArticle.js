@@ -192,14 +192,14 @@ const AddArticle = (props) => {
           <div className="addArticleImageContainer">
             <div className="addArticleImageWrapper">
               <div className="inputContainer">
-                <label class="file">
+                <label className="file">
                   <input
                     name="articleImage"
                     type="file"
                     id="file"
                     accept="image/*"
                   />
-                  <span class="file-custom"></span>
+                  <span className="file-custom"></span>
                 </label>
               </div>
             </div>

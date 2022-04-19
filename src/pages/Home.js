@@ -1,6 +1,21 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { url } from "../path";
 const arr = [1, 1, 1, 1, 1, 1];
 const Home = (props) => {
+  const [articlesTrends, setArticlesTrends] = useState([]);
+  const [articlesRandom, setArticlesRandom] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get(`${url}/article/getArticles`);
+      if (response.data.articles) {
+        setArticlesTrends(response.data.articles.slice(0, 6));
+        setArticlesRandom(response.data.articles.slice(6));
+      }
+    })();
+  }, []);
+
   return (
     <div>
       {props.children}
@@ -31,7 +46,7 @@ const Home = (props) => {
             height="29"
             viewBox="0 0 28 29"
             fill="none"
-            class="io y"
+            className="io y"
           >
             <path fill="#fff" d="M0 .8h28v28H0z"></path>
             <g opacity="0.8" clip-path="url(#trending_svg__clip0)">
@@ -56,36 +71,55 @@ const Home = (props) => {
           <p className="homeMidSideTitle">TRENDING ON Teacher's</p>
         </div>
         <div className="carteHomeMidSideContainer">
-          {arr.map((item, index) => (
-            <div className="carteHomeMidSide">
-              <div className="carteHomeRightSideContainer">
-                {" "}
-                <p className="carteHomeRightSideNumberArticle">0{index + 1}</p>
-              </div>
-              <div className="carteHomeLeftSideContainer">
-                <div className="carteHomeLeftSideContainerUser">
+          {articlesTrends.map((item, index) => (
+            <Link
+              style={{
+                textDecoration: "none",
+              }}
+              to={`/c/articleDetails/${item.article._id}`}
+            >
+              <div className="carteHomeMidSide">
+                <div className="carteHomeRightSideContainer">
                   {" "}
-                  <img
-                    className="profileIconCarteHome"
-                    style={{
-                      width: 20,
-                    }}
-                    src="https://miro.medium.com/fit/c/40/40/1*F71jAKfEyTlhtq7wulI-mQ.png"
-                    alt="this "
-                  />
-                  <p className="carteHomeUserName">Oussema dabboussi</p>
-                </div>
-                <div>
-                  <p className="carteHomeArticleTitle">
-                    Will Smith, Chris Rock and What You’re Missing About That
-                    Slap
+                  <p className="carteHomeRightSideNumberArticle">
+                    0{index + 1}
                   </p>
                 </div>
-                <div>
-                  <p className="carteHomeDate">Mar 30</p>
+                <div className="carteHomeLeftSideContainer">
+                  <div className="carteHomeLeftSideContainerUser">
+                    {" "}
+                    <img
+                      className="profileIconCarteHome"
+                      style={{
+                        width: 20,
+                      }}
+                      src={`${url}/teacherImages/${item.teacher.profilePicture}`}
+                      alt="this "
+                    />
+                    <p className="carteHomeUserName">{item.teacher.fullName}</p>
+                  </div>
+                  <div>
+                    <p className="carteHomeArticleTitle">
+                      {item.article.title}
+                    </p>
+                    <p
+                      style={{
+                        color: "black",
+                      }}
+                    >
+                      {" "}
+                      {item.article.articleBody.slice(0, 50)}...
+                    </p>
+                  </div>
+                  <div>
+                    <p className="carteHomeDate">
+                      {" "}
+                      {item.article.articleDate.slice(0, 10)}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
