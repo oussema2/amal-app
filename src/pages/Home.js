@@ -34,7 +34,7 @@ const Home = (props) => {
           <img
             className="imageHomePage"
             alt="home pic"
-            src={`${process.env.PUBLIC_URL}/depositphotos_11389074-stock-photo-young-school-teachers.jpg`}
+            src={`${process.env.PUBLIC_URL}/teachers-abbey-jc-201026.jpg`}
           />
         </div>
       </div>
@@ -99,12 +99,18 @@ const Home = (props) => {
                     <p className="carteHomeUserName">{item.teacher.fullName}</p>
                   </div>
                   <div>
-                    <p className="carteHomeArticleTitle">
+                    <p
+                      style={{
+                        fontSize: "14px",
+                      }}
+                      className="carteHomeArticleTitle"
+                    >
                       {item.article.title}
                     </p>
                     <p
                       style={{
                         color: "black",
+                        fontSize: "14px",
                       }}
                     >
                       {" "}
@@ -124,106 +130,55 @@ const Home = (props) => {
         </div>
       </div>
       <div className="homeBottomSideContainer">
-        <div className="carteHomeBotSide">
-          <div className="carteHomeLeftSideContainer">
-            <div className="carteHomeLeftSideContainerUser">
-              {" "}
-              <img
-                className="profileIconCarteHome"
+        {articlesRandom
+          ? articlesRandom.map((item) => (
+              <Link
                 style={{
-                  width: 20,
+                  textDecoration: "none",
                 }}
-                src="https://miro.medium.com/fit/c/40/40/1*F71jAKfEyTlhtq7wulI-mQ.png"
-                alt="this "
-              />
-              <p className="carteHomeUserName">Oussema dabboussi</p>
-            </div>
-            <div>
-              <p className="carteHomeArticleTitleBotSide">
-                Will Smith, Chris Rock and What You’re Missing About That Slap
-              </p>
-              <p className="cartHomeBottomSideQuestion">
-                What can a ski resort teach us about Ukraine and Russia?
-              </p>
-            </div>
-            <div>
-              <p className="carteHomeDate">Mar 30</p>
-            </div>
-          </div>
-          <div>
-            <img
-              className="articleImage"
-              alt="dd"
-              src="https://miro.medium.com/fit/c/200/134/1*tr-vfEXgfCHwnFmgnWSieg.jpeg"
-            />
-          </div>
-        </div>
-        <div className="carteHomeBotSide">
-          <div className="carteHomeLeftSideContainer">
-            <div className="carteHomeLeftSideContainerUser">
-              {" "}
-              <img
-                className="profileIconCarteHome"
-                style={{
-                  width: 20,
-                }}
-                src="https://miro.medium.com/fit/c/40/40/1*F71jAKfEyTlhtq7wulI-mQ.png"
-                alt="this "
-              />
-              <p className="carteHomeUserName">Oussema dabboussi</p>
-            </div>
-            <div>
-              <p className="carteHomeArticleTitleBotSide">
-                Will Smith, Chris Rock and What You’re Missing About That Slap
-              </p>
-              <p className="cartHomeBottomSideQuestion">
-                What can a ski resort teach us about Ukraine and Russia?
-              </p>
-            </div>
-            <div>
-              <p className="carteHomeDate">Mar 30</p>
-            </div>
-          </div>
-          <div>
-            <img
-              alt="dd"
-              src="https://miro.medium.com/fit/c/200/134/1*tr-vfEXgfCHwnFmgnWSieg.jpeg"
-            />
-          </div>
-        </div>
-        <div className="carteHomeBotSide">
-          <div className="carteHomeLeftSideContainer">
-            <div className="carteHomeLeftSideContainerUser">
-              {" "}
-              <img
-                className="profileIconCarteHome"
-                style={{
-                  width: 20,
-                }}
-                src="https://miro.medium.com/fit/c/40/40/1*F71jAKfEyTlhtq7wulI-mQ.png"
-                alt="this "
-              />
-              <p className="carteHomeUserName">Oussema dabboussi</p>
-            </div>
-            <div>
-              <p className="carteHomeArticleTitleBotSide">
-                Will Smith, Chris Rock and What You’re Missing About That Slap
-              </p>
-              <p className="cartHomeBottomSideQuestion">
-                What can a ski resort teach us about Ukraine and Russia?
-              </p>
-            </div>
-            <div>
-              <p className="carteHomeDate">Mar 30</p>
-            </div>
-          </div>
-          <div>
-            <img
-              alt="dd"
-              src="https://miro.medium.com/fit/c/200/134/1*tr-vfEXgfCHwnFmgnWSieg.jpeg"
-            />
-          </div>
-        </div>
+                to={`/c/articleDetails/${item.article._id}`}
+              >
+                <div className="carteHomeBotSide">
+                  <div className="carteHomeLeftSideContainer">
+                    <div className="carteHomeLeftSideContainerUser">
+                      {" "}
+                      <img
+                        className="profileIconCarteHome"
+                        style={{
+                          width: 20,
+                        }}
+                        src={`${url}/teacherImages/${item.teacher.profilePicture}`}
+                        alt="this "
+                      />
+                      <p className="carteHomeUserName">
+                        {item.teacher.fullName}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="carteHomeArticleTitleBotSide">
+                        {item.article.title}
+                      </p>
+                      <p className="cartHomeBottomSideQuestion">
+                        {item.article.articleBody.slice(0, 50)}...
+                      </p>
+                    </div>
+                    <div>
+                      <p className="carteHomeDate">
+                        {item.article.articleDate.slice(0, 10)}
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <img
+                      className="articleImage"
+                      alt="dd"
+                      src={`${url}/articleImages/${item.article.articleImage}`}
+                    />
+                  </div>
+                </div>
+              </Link>
+            ))
+          : null}
       </div>
     </div>
   );
