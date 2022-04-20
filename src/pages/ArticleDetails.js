@@ -17,7 +17,13 @@ const ArticleDetails = () => {
       const response = await axios.get(`${url}/article/getArticleById/${id}`);
       console.log(response.data);
       if (response.data.article) {
-        setArticle(response.data.article);
+        const articleBody = response.data.article.articleBody.replace(
+          /\\n/g,
+          "\n"
+        );
+        const article = response.data.article;
+        article["articleBody"] = articleBody;
+        setArticle(article);
         setTeacher(response.data.teacher);
       }
     })();

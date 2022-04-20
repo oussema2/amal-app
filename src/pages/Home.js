@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { url } from "../path";
-const arr = [1, 1, 1, 1, 1, 1];
 const Home = (props) => {
   const [articlesTrends, setArticlesTrends] = useState([]);
   const [articlesRandom, setArticlesRandom] = useState([]);

@@ -27,6 +27,7 @@ const MyArticles = (props) => {
       }
     })();
   }, []);
+  console.log(articles);
   const getArticleByTopic = async (topic) => {
     const response = await axios.get(
       `${url}/article/getArticlesByTopic/${topic}`
@@ -105,7 +106,7 @@ const MyArticles = (props) => {
                         </p>
                       </div>
                       <div className="topicInCarteCOntainer">
-                        {item.article?.topics
+                        {item.topics
                           ? item.topics.map((topix) => (
                               <p className="categorieItemContainerInPost">
                                 {topix}

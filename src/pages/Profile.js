@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SideNav from "../Components/molecules/SideNav";
 import { url } from "../path";
 import axios from "axios";

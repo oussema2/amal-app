@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SideNav from "../Components/molecules/SideNav";
 import { url } from "../path";
 const Acceuill = (props) => {
@@ -12,6 +12,7 @@ const Acceuill = (props) => {
     (async () => {
       const response = await axios.get(`${url}/article/getArticles`);
       const responseTopics = await axios.get(`${url}/topic/getAllTopics`);
+      console.log(responseTopics);
       if (responseTopics.data.topics) {
         setTopics(responseTopics.data.topics);
       }
