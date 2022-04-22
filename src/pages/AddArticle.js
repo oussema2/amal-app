@@ -26,6 +26,9 @@ const AddArticle = (props) => {
   }
 
   const openModal = () => {
+    if (!article.title || !article.articleBody || !article.articleImage) {
+      return;
+    }
     setIsOpen(true);
   };
 
@@ -75,7 +78,8 @@ const AddArticle = (props) => {
     const response = await axios.post(`${url}/article/addArticle`, data);
     console.log(response.data.message);
     if (response.data.message === "added") {
-      openModal();
+      console.log(response.data);
+      window.location.pathname = "/c";
     }
   };
   const addToAddedTopics = (e) => {
