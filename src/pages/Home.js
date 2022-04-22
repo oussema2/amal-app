@@ -9,6 +9,7 @@ const Home = (props) => {
     (async () => {
       const response = await axios.get(`${url}/article/getArticles`);
       if (response.data.articles) {
+        console.log(response.data);
         setArticlesTrends(response.data.articles.slice(0, 6));
         setArticlesRandom(response.data.articles.slice(6));
       }
@@ -67,7 +68,7 @@ const Home = (props) => {
               </clipPath>
             </defs>
           </svg>
-          <p className="homeMidSideTitle">TRENDING ON Teacher's</p>
+          <p className="homeMidSideTitle">TRENDING ON Inno Teachers</p>
         </div>
         <div className="carteHomeMidSideContainer">
           {articlesTrends.map((item, index) => (

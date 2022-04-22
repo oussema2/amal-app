@@ -303,7 +303,7 @@ function App() {
             </div>
             <div className="modalContainerContent">
               <div className="modalContentHome">
-                <p className="titleModal">Join Teacher's.</p>
+                <p className="titleModal">Join Inno Teachers.</p>
                 <form
                   onSubmit={(e) => submitRegister(e)}
                   onChange={(e) => formChange(e)}

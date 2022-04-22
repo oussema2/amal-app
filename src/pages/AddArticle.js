@@ -103,7 +103,7 @@ const AddArticle = (props) => {
       <div className="addArticleHeader">
         <div>
           <Link style={{ textDecoration: "none", color: "black" }} to={"/c"}>
-            <p>Teacher's</p>
+            <p>Inno Teachers</p>
           </Link>
         </div>
         {userData.fullName ? (

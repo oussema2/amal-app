@@ -22,7 +22,7 @@ const Header = (props) => {
               cursor: "pointer",
             }}
           >
-            Teacher's
+            Inno Teachers
           </Link>
         </div>
 
